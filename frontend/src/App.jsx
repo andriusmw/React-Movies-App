@@ -5,7 +5,7 @@ import Favorites from './pages/Favorites'
 import { Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
 
-import './App.css'
+import '../src/css/App.css'
 
 function App() {
  
