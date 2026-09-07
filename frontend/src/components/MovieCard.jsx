@@ -8,14 +8,14 @@ function MovieCard({movie}) {
 
     return <div className="movie-card">
         <div className="movie-poster">
-             <img src={movie.Poster} alt={movie.Title} />
+             <img src={movie.poster} alt={movie.title} />
         </div>
        <div className="movie-overlay">
             <button className="favourite-btn" onClick={onFavClick}> ♥ </button>
        </div>
        <div className="movie-info">
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
+              <h3>{movie.title}</h3>
+              <p>{movie.year}</p>
        </div>
       
     </div>  

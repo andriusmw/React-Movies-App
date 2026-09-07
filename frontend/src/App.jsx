@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import MovieCard from './components/MovieCard'
 
 import './App.css'
 
@@ -7,9 +8,7 @@ function App() {
 
   return (
     <>
-      <div>
-        <p>Hello World!</p>
-      </div>
+      <MovieCard movie={{title:"Tim's film", year:"1999" , }} />
     </>
   )
 }
