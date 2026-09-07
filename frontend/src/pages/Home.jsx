@@ -15,12 +15,16 @@ function Home() {
     //--------------- Functions ---------------------------
     useEffect(() => {
         const loadPopularMovies = async () => {
+            setLoading(true)
             try {
                 const popularMovies = await getPopularMovies()
                 setMovies(popularMovies)
+                setLoading(false)
+                setError(null)
             } catch (err) {
                 console.log(err)
                 setError("Failed to load movies...")
+                setLoading(false)
             } finally {
                 setLoading(false)
             }
@@ -30,9 +34,27 @@ function Home() {
 
 
 
-    const HandleSearch = () => {
-        // e.preventDefault()
-        alert(searchQuery)
+    const HandleSearch = async (e) => {
+         e.preventDefault()
+        if(!searchQuery.trim()) return
+        if (loading) return
+        setLoading(true)
+        
+        try {
+            const searchResults = await searchMovies(searchQuery)
+            setMovies(searchResults)
+            setLoading(false)
+            setError(null)
+        } catch (err) {
+                console.log(err)
+                setError("Failed to search...")
+                setLoading(false)
+        } finally {
+            setLoading(false)
+        }
+
+
+       //setSearchQuery("");
     }
 
 
@@ -47,6 +69,12 @@ function Home() {
         </form>
 
 
+        {error && <div className="error-message"> {error} </div>}
+
+
+        {loading ? (
+        <div className="loading">Loading...</div> 
+        ) :  ( 
         <div className="movies-grid">
             {movies.map(movie => 
             //Continional rendering && means show the next "(content)" if the condition is true
@@ -54,7 +82,8 @@ function Home() {
             <MovieCard movie={movie} key={movie.id} /> )
             )
             }
-        </div>
+        </div> ) }
+       
     </div>
 }
 
