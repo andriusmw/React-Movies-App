@@ -13,6 +13,7 @@ function Home() {
     ]
 
     const HandleSearch = () => {
+        // e.preventDefault()
         alert(searchQuery)
     }
 
@@ -29,7 +30,12 @@ function Home() {
 
 
         <div className="movies-grid">
-            {movies.map(movie => <MovieCard movie={movie} key={movie.id} />)}
+            {movies.map(movie => 
+            //Continional rendering && means show the next "(content)" if the condition is true
+            movie.title.toLowerCase().includes(searchQuery) && (
+            <MovieCard movie={movie} key={movie.id} /> )
+            )
+            }
         </div>
     </div>
 }
