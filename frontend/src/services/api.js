@@ -5,7 +5,7 @@ export const getPopularMovies = async () => {
     const response = await fetch(
         `${BASE_URL}/movie/popular?api_key=${API_KEY}`);
     const data = await response.json()
-    // console.log(data) to see how the data is returned, with what structure
+     console.log(data)  //to see how the data is returned, with what structure
     return data.results
 }
 
