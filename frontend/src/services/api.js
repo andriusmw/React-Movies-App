@@ -27,7 +27,8 @@ export const getMovieDetails = async (id) => {
     const response = await fetch(
         `${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
     const dataDetails = await response.json()
-    // console.log(data) to see how the data is returned, with what structure
+    console.log("Data Details: ")
+     console.log(dataDetails) 
     return dataDetails
 }
 

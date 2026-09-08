@@ -2,6 +2,8 @@ import { use } from "react"
 import MovieCard from "../components/MovieCard"
 import { useState, useEffect } from "react"
 import { searchMovies, getPopularMovies } from "../services/api"
+import { useNavigate } from 'react-router-dom';
+
 import "../css/Home.css"
 
 function Home() {
@@ -13,6 +15,15 @@ function Home() {
 
  
     //--------------- Functions ---------------------------
+    //this is to use the router to change page to details page
+    const navigate = useNavigate();
+
+        const handleMovieClick = (id) => {
+    navigate(`/movie/detail/${id}`);
+    };
+
+
+    //Loads at the begining
     useEffect(() => {
         const loadPopularMovies = async () => {
             setLoading(true)
@@ -34,7 +45,7 @@ function Home() {
     }, [])
 
 
-
+    //to Search movies
     const HandleSearch = async (e) => {
          e.preventDefault()
         if(!searchQuery.trim()) return
@@ -81,7 +92,11 @@ function Home() {
             {movies.map(movie => 
             //Continional rendering && means show the next "(content)" if the condition is true
             movie.title.toLowerCase().includes(searchQuery) && (
-            <MovieCard movie={movie} key={movie.id} /> )
+            <MovieCard 
+             movie={movie} 
+             key={movie.id} 
+             onClick={() => handleMovieClick(movie.id)} 
+            /> )
             )
             }
         </div> ) }

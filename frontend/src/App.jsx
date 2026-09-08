@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import MovieCard from './components/MovieCard'
+import MovieDetailsPage from './pages/details'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import { Routes, Route } from 'react-router-dom'
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/favorites' element={<Favorites />} />
+         <Route path='/movie/detail/:id' element={<MovieDetailsPage />} />
       </Routes>
     </main>
     </div>
