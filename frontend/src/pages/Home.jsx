@@ -27,6 +27,7 @@ function Home() {
                 setLoading(false)
             } finally {
                 setLoading(false)
+                
             }
         }
         loadPopularMovies()
@@ -51,6 +52,7 @@ function Home() {
                 setLoading(false)
         } finally {
             setLoading(false)
+            
         }
 
 
