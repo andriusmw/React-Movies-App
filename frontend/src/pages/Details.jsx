@@ -1,12 +1,12 @@
-  import { use } from "react";
 import { useParams } from 'react-router-dom';
   import { useState, useEffect } from "react"
+  import DetailsComp from "../components/DetailsComp";
 import { getMovieDetails } from "../services/api"
   
   function MovieDetailsPage() {
       //-----------------STATES,Vars and consts ------------------
       const { id } = useParams();
-      const [movieDetails,setMovieDetails] = useState([]);
+      const [movieDetails,setMovieDetails] = useState(null);
       const [error,setError] = useState(null);
       const [loading,setLoading] = useState(true);
   
@@ -20,8 +20,6 @@ import { getMovieDetails } from "../services/api"
             try {
                 const MovieDetailsFunc = await getMovieDetails(id)
                 setMovieDetails(MovieDetailsFunc)
-                console.log(movieDetails)
-                setLoading(false)
                 setError(null)
             } catch (err) {
                 console.log(err)
@@ -33,12 +31,28 @@ import { getMovieDetails } from "../services/api"
             }
         }
         loadMovieDetails()
-    }, [])
+    }, [id])
+
+    //render the modieDetails state so i can send it updated to the children component
+    useEffect(() => {
+  console.log('movieDetails updated:', movieDetails);
+}, [movieDetails]);
+
+
+    if (loading) {
+      return <p>Loading movie details...</p>
+    }
+
+    if (error) {
+      return <p>{error}</p>
+    }
 
     return <>
 
-    
-    
+    <DetailsComp
+        movieDetails={movieDetails}
+    />
+   
     </>
       }
 
