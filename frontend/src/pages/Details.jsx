@@ -33,10 +33,7 @@ import { getMovieDetails } from "../services/api"
         loadMovieDetails()
     }, [id])
 
-    //render the modieDetails state so i can send it updated to the children component
-    useEffect(() => {
-  console.log('movieDetails updated:', movieDetails);
-}, [movieDetails]);
+
 
 
     if (loading) {

@@ -1,12 +1,13 @@
 import "../css/MovieCard.css"
 
-function MovieCard({movie}) {
+function MovieCard({ movie, onClick }) {
 
-    function onFavClick() {
+    function onFavClick(e) {
+        e.stopPropagation()
         alert("clicked")
     }
 
-    return <div className="movie-card">
+    return <div className="movie-card" onClick={onClick}>
         <div className="movie-poster">
              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
         </div>
